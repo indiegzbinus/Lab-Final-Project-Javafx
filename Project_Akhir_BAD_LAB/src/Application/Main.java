@@ -28,33 +28,33 @@ import javafx.stage.Stage;
 public class Main extends Application implements EventHandler<ActionEvent> {
 
 	Stage stage;
-	
 	Scene scene;
 	
-	BorderPane root;
-	GridPane gridpane;
+	// Panes
+	BorderPane root = new BorderPane();
+	GridPane gridpane = new GridPane();
 	
-    MenuBar menuBar;
-   	Menu menu;
-    MenuItem login;
-    MenuItem register;
+	// Menu Bars
+    MenuBar menuBar = new MenuBar();
+    Menu menu = new Menu("Page");
+    MenuItem loginMenuItem = new MenuItem("Login");
+    MenuItem registerMenuItem = new MenuItem("Register");
 	
-	Label labelLoginUsername, labelLoginPassword, labelRegisterUsername, labelRegisterPassword;
-	TextField textfieldLoginUsername, textfieldLoginRegister;
-	PasswordField passwordFieldLogin, passwordFieldRegister;
-	Button loginButton;
+    // Login Scene
+	Label labelLoginUsername = new Label("Username");;
+	Label labelLoginPassword = new Label("Password");
+	TextField textfieldLoginUsername = new TextField();;
+	PasswordField passwordFieldLogin = new PasswordField();;
+	Button loginButton = new Button("Login");
+
 	Alert blankAlert, wrongPasswordAlert, invalidAlert;
 	
-	Label labelEmail, labelPassword, labelAge, labelConfirm;
+	// Register Scene
+	Label labelRegisterUsername, labelRegisterPassword, labelAge, labelConfirm;
+	TextField textfieldLoginRegister;
+	TextField passwordFieldRegister, passwordFieldConfirmRegister;
 	
 	public void init() {
-		// Initialize modules
-		root = new BorderPane();
-		labelLoginUsername = new Label("Username");
-		labelLoginPassword = new Label("Password");
-		textfieldLoginUsername = new TextField();
-		passwordFieldLogin = new PasswordField();
-		loginButton = new Button("Login");
 		
 		// Login page
 		gridpane = new GridPane();
@@ -67,15 +67,15 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
 		
 		// Insert modules
-		gridpane.add(labelLoginUsername, 0, 1);
-		gridpane.add(textfieldLoginUsername, 0, 2);
-		gridpane.add(labelPassword, 0, 3);
-		gridpane.add(passwordFieldLogin, 0, 4);
-		gridpane.add(loginButton, 0, 5);
+		gridpane.add(labelLoginUsername, 0, 0);
+		gridpane.add(textfieldLoginUsername, 0, 1);
+		gridpane.add(labelLoginPassword, 0, 2);
+		gridpane.add(passwordFieldLogin, 0, 3);
+		gridpane.add(loginButton, 0, 4);
 		
 		// Adjust modules width
-		textfieldUsername.setPrefWidth(250);
-		passwordfield.setPrefWidth(250);
+		textfieldLoginUsername.setPrefWidth(200);
+		passwordFieldLogin.setPrefWidth(200);
 		loginButton.setPrefWidth(100);
 	}
 	
@@ -115,14 +115,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 				invalidAlert.show();
 			}
         });
-		
+        
         // Menu Bar
-        menuBar = new MenuBar();
-       	menu = new Menu("Page");
-        login = new MenuItem("Login");
-        register = new MenuItem("Register");
-
-        menu.getItems().addAll(login, register);
+        menu.getItems().addAll(loginMenuItem, registerMenuItem);
         menuBar.getMenus().addAll(menu);
         
         // Add pane to root
@@ -133,74 +128,74 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		scene = new Scene(root, 750, 500);
 	}
 	
-    private Scene Register() {
-        HBox vbox = new HBox();
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(20));
-
-        Label email = new Label("Email");
-        Label password = new Label ("Password");
-        Label age = new Label("age");
-        Label confirm = new Label("Confirm Password");
-        
-        TextField emailfield = new TextField();
-        PasswordField passwordfield = new PasswordField();
-        PasswordField confirmfield = new PasswordField();
-        Spinner <Integer> umr = new Spinner<>(1,100,1);
-        
-        VBox kiri = new VBox();
-        kiri.getChildren().addAll(email, emailfield, password, passwordfield, 
-        		confirm, confirmfield, age, umr);
-        kiri.setSpacing(5);
-        
-        Label gender = new Label("Gender");
-        Label negara = new Label ("Nationality");
-        
-        Button regis = new Button ("Register");
-        RadioButton cwo = new RadioButton("Male");
-        RadioButton cwe = new RadioButton("Female");
-        ToggleGroup genderr = new ToggleGroup();
-        cwo.setToggleGroup(genderr);
-        cwe.setToggleGroup(genderr);
-        
-        ComboBox negaraa = new ComboBox();
-        ObservableList<String> ya = negaraa.getItems();
-        ya.add("Indonesia");
-        ya.add("Malaysia");
-        ya.add("Nigeria");
-        ya.add("Papua Nugini");
-        ya.add("Inggris");
-        ya.add("Amerika");
-        ya.add("Jepang");
-        ya.add("Korea");
-        ya.add("Kamboja");
-        ya.add("Chile");
-        ya.add("Filipina");
-        ya.add("China");
-        ya.add("Singapura");
-        
-        VBox kanan = new VBox ();
-        kanan.getChildren().addAll(gender, cwo,cwe , negara, negaraa, regis);
-        kanan.setSpacing(5);
-        
-        Menu menu = new Menu("Page");
-        MenuBar menuBar = new MenuBar();
-        MenuItem login = new MenuItem("Login");
-        MenuItem register = new MenuItem("Register");
-
-        menu.getItems().addAll(login, register);
-        menuBar.getMenus().addAll(menu);
-
-        HBox utama = new HBox();
-        utama.getChildren().addAll(kiri,kanan);
-        utama.setAlignment(Pos.CENTER);
-        utama.setSpacing(50);
-        BorderPane bp = new BorderPane();
-        bp.setTop(menuBar);
-        bp.setCenter(utama);
-
-        return new Scene(bp, 750, 500);
-    }
+//    private Scene Register() {
+//        HBox vbox = new HBox();
+//        vbox.setSpacing(10);
+//        vbox.setPadding(new Insets(20));
+//
+//        Label email = new Label("Email");
+//        Label password = new Label ("Password");
+//        Label age = new Label("age");
+//        Label confirm = new Label("Confirm Password");
+//        
+//        TextField emailfield = new TextField();
+//        PasswordField passwordfield = new PasswordField();
+//        PasswordField confirmfield = new PasswordField();
+//        Spinner <Integer> umr = new Spinner<>(1,100,1);
+//        
+//        VBox kiri = new VBox();
+//        kiri.getChildren().addAll(email, emailfield, password, passwordfield, 
+//        		confirm, confirmfield, age, umr);
+//        kiri.setSpacing(5);
+//        
+//        Label gender = new Label("Gender");
+//        Label negara = new Label ("Nationality");
+//        
+//        Button regis = new Button ("Register");
+//        RadioButton cwo = new RadioButton("Male");
+//        RadioButton cwe = new RadioButton("Female");
+//        ToggleGroup genderr = new ToggleGroup();
+//        cwo.setToggleGroup(genderr);
+//        cwe.setToggleGroup(genderr);
+//        
+//        ComboBox negaraa = new ComboBox();
+//        ObservableList<String> ya = negaraa.getItems();
+//        ya.add("Indonesia");
+//        ya.add("Malaysia");
+//        ya.add("Nigeria");
+//        ya.add("Papua Nugini");
+//        ya.add("Inggris");
+//        ya.add("Amerika");
+//        ya.add("Jepang");
+//        ya.add("Korea");
+//        ya.add("Kamboja");
+//        ya.add("Chile");
+//        ya.add("Filipina");
+//        ya.add("China");
+//        ya.add("Singapura");
+//        
+//        VBox kanan = new VBox ();
+//        kanan.getChildren().addAll(gender, cwo,cwe , negara, negaraa, regis);
+//        kanan.setSpacing(5);
+//        
+//        Menu menu = new Menu("Page");
+//        MenuBar menuBar = new MenuBar();
+//        MenuItem login = new MenuItem("Login");
+//        MenuItem register = new MenuItem("Register");
+//
+//        menu.getItems().addAll(login, register);
+//        menuBar.getMenus().addAll(menu);
+//
+//        HBox utama = new HBox();
+//        utama.getChildren().addAll(kiri,kanan);
+//        utama.setAlignment(Pos.CENTER);
+//        utama.setSpacing(50);
+//        BorderPane bp = new BorderPane();
+//        bp.setTop(menuBar);
+//        bp.setCenter(utama);
+//
+//        return new Scene(bp, 750, 500);
+//    }
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -209,6 +204,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	public void start(Stage stage) throws Exception {
 		init();
 		LogIn();
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.setTitle("Login");
 		stage.show();
