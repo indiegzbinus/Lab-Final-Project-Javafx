@@ -22,20 +22,24 @@ public class Main extends Application {
 		PasswordField passwordfield = new PasswordField();
 		Button loginButton = new Button("Login");
 		
+		// Login page
 		GridPane gridpane = new GridPane();
-		gridpane.setVgap(10);
-		gridpane.setHgap(10);
 		gridpane.setPrefHeight(500);
 		gridpane.setPrefWidth(750);
+		gridpane.setVgap(10);
+		gridpane.setHgap(10);
+		gridpane.setAlignment(Pos.CENTER);
+		gridpane.setPadding(new Insets(20, 20, 20, 20));
+		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
+		
+		// Insert modules
 		gridpane.add(labelUsername, 0, 1);
 		gridpane.add(textfieldUsername, 0, 2);
 		gridpane.add(labelPassword, 0, 3);
 		gridpane.add(passwordfield, 0, 4);
 		gridpane.add(loginButton, 0, 5);
-		gridpane.setAlignment(Pos.CENTER);
-		gridpane.setPadding(new Insets(20, 20, 20, 20));
-		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
 
+		// Adjust modules width
 		textfieldUsername.setPrefWidth(250);
 		passwordfield.setPrefWidth(250);
 		loginButton.setPrefWidth(100);
