@@ -1,6 +1,8 @@
 package Application;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,24 +25,39 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-	
+public class Main extends Application implements EventHandler<ActionEvent> {
+
 	Stage stage;
-	Scene scene;
-	BorderPane root;
 	
-	public void initLogInScene() {
-		
+	Scene scene;
+	
+	BorderPane root;
+	GridPane gridpane;
+	
+    MenuBar menuBar;
+   	Menu menu;
+    MenuItem login;
+    MenuItem register;
+	
+	Label labelUsername, labelPassword;
+	TextField textfieldUsername;
+	PasswordField passwordfield;
+	Button loginButton;
+	Alert blankAlert, wrongPasswordAlert, invalidAlert;
+	
+	Label labelEmail, labelPassword, labelAge, labelConfirm;
+	
+	public void init() {
 		// Initialize modules
 		root = new BorderPane();
-		Label labelUsername = new Label("Username");
-		Label labelPassword = new Label("Password");
-		TextField textfieldUsername = new TextField();
-		PasswordField passwordfield = new PasswordField();
-		Button loginButton = new Button("Login");
+		labelUsername = new Label("Username");
+		labelPassword = new Label("Password");
+		textfieldUsername = new TextField();
+		passwordfield = new PasswordField();
+		loginButton = new Button("Login");
 		
 		// Login page
-		GridPane gridpane = new GridPane();
+		gridpane = new GridPane();
 		gridpane.setPrefHeight(500);
 		gridpane.setPrefWidth(750);
 		gridpane.setVgap(10);
@@ -60,8 +77,9 @@ public class Main extends Application {
 		textfieldUsername.setPrefWidth(250);
 		passwordfield.setPrefWidth(250);
 		loginButton.setPrefWidth(100);
-		
-<<<<<<< HEAD
+	}
+	
+	public void LogIn() {
 		// Add modules behavior
         loginButton.setOnAction(e -> {
         	// Obtain textfields data
@@ -74,9 +92,9 @@ public class Main extends Application {
             String databaseAccountType = "Admin";
             
             // Alerts
-            Alert blankAlert = new Alert(AlertType.WARNING, "Username and Password must be filled!");
-            Alert wrongPasswordAlert = new Alert(AlertType.WARNING, "Wrong Username or Password!");
-            Alert invalidAlert = new Alert(AlertType.ERROR, "Something unexpected occured!");
+            blankAlert = new Alert(AlertType.WARNING, "Username and Password must be filled!");
+            wrongPasswordAlert = new Alert(AlertType.WARNING, "Wrong Username or Password!");
+            invalidAlert = new Alert(AlertType.ERROR, "Something unexpected occured!");
             
             if (username.isBlank() || password.isBlank()) {
 				blankAlert.show();
@@ -99,17 +117,10 @@ public class Main extends Application {
         });
 		
         // Menu Bar
-        MenuBar menuBar = new MenuBar();
-       	Menu menu = new Menu("Page");
-        MenuItem login = new MenuItem("Login");
-        MenuItem register = new MenuItem("Register");
-=======
-		// Create scene
-		Scene scene = new Scene(gridpane, 750, 500);
-		
-		return scene;
-	}
->>>>>>> parent of f5d92b2 (Update Main.java)
+        menuBar = new MenuBar();
+       	menu = new Menu("Page");
+        login = new MenuItem("Login");
+        register = new MenuItem("Register");
 
         menu.getItems().addAll(login, register);
         menuBar.getMenus().addAll(menu);
@@ -122,7 +133,7 @@ public class Main extends Application {
 		scene = new Scene(root, 750, 500);
 	}
 	
-    private Scene initRegister() {
+    private Scene Register() {
         HBox vbox = new HBox();
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
@@ -196,10 +207,17 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) throws Exception {
-		initLogInScene();
+		init();
+		LogIn();
 		stage.setScene(scene);
 		stage.setTitle("Login");
 		stage.show();
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
