@@ -25,8 +25,8 @@ public class Main extends Application {
 		GridPane gridpane = new GridPane();
 		gridpane.setVgap(10);
 		gridpane.setHgap(10);
-		gridpane.setMinHeight(500);
-		gridpane.setMinWidth(500);
+		gridpane.setPrefHeight(500);
+		gridpane.setPrefWidth(750);
 		gridpane.add(labelUsername, 0, 1);
 		gridpane.add(textfieldUsername, 0, 2);
 		gridpane.add(labelPassword, 0, 3);
@@ -36,9 +36,9 @@ public class Main extends Application {
 		gridpane.setPadding(new Insets(20, 20, 20, 20));
 		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
 
-		textfieldUsername.setMinWidth(250);
-		passwordfield.setMinWidth(250);
-		loginButton.setMinWidth(100);
+		textfieldUsername.setPrefWidth(250);
+		passwordfield.setPrefWidth(250);
+		loginButton.setPrefWidth(100);
 
 		Scene scene = new Scene(gridpane, 750, 550);
 		
