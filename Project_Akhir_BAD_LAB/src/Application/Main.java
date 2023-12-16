@@ -39,9 +39,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     MenuItem login;
     MenuItem register;
 	
-	Label labelUsername, labelPassword;
-	TextField textfieldUsername;
-	PasswordField passwordfield;
+	Label labelLoginUsername, labelLoginPassword, labelRegisterUsername, labelRegisterPassword;
+	TextField textfieldLoginUsername, textfieldLoginRegister;
+	PasswordField passwordFieldLogin, passwordFieldRegister;
 	Button loginButton;
 	Alert blankAlert, wrongPasswordAlert, invalidAlert;
 	
@@ -50,10 +50,10 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 	public void init() {
 		// Initialize modules
 		root = new BorderPane();
-		labelUsername = new Label("Username");
-		labelPassword = new Label("Password");
-		textfieldUsername = new TextField();
-		passwordfield = new PasswordField();
+		labelLoginUsername = new Label("Username");
+		labelLoginPassword = new Label("Password");
+		textfieldLoginUsername = new TextField();
+		passwordFieldLogin = new PasswordField();
 		loginButton = new Button("Login");
 		
 		// Login page
@@ -67,10 +67,10 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
 		
 		// Insert modules
-		gridpane.add(labelUsername, 0, 1);
-		gridpane.add(textfieldUsername, 0, 2);
+		gridpane.add(labelLoginUsername, 0, 1);
+		gridpane.add(textfieldLoginUsername, 0, 2);
 		gridpane.add(labelPassword, 0, 3);
-		gridpane.add(passwordfield, 0, 4);
+		gridpane.add(passwordFieldLogin, 0, 4);
 		gridpane.add(loginButton, 0, 5);
 		
 		// Adjust modules width
@@ -83,8 +83,8 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 		// Add modules behavior
         loginButton.setOnAction(e -> {
         	// Obtain textfields data
-            String username = textfieldUsername.getText();
-            String password = passwordfield.getText();
+            String username = textfieldLoginUsername.getText();
+            String password = passwordFieldLogin.getText();
             
             // Replace username & passwords verification later
             String databaseUsername = "Admin";
