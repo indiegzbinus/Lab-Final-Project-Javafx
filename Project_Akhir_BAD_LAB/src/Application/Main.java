@@ -61,6 +61,7 @@ public class Main extends Application {
 		passwordfield.setPrefWidth(250);
 		loginButton.setPrefWidth(100);
 		
+<<<<<<< HEAD
 		// Add modules behavior
         loginButton.setOnAction(e -> {
         	// Obtain textfields data
@@ -102,6 +103,13 @@ public class Main extends Application {
        	Menu menu = new Menu("Page");
         MenuItem login = new MenuItem("Login");
         MenuItem register = new MenuItem("Register");
+=======
+		// Create scene
+		Scene scene = new Scene(gridpane, 750, 500);
+		
+		return scene;
+	}
+>>>>>>> parent of f5d92b2 (Update Main.java)
 
         menu.getItems().addAll(login, register);
         menuBar.getMenus().addAll(menu);
