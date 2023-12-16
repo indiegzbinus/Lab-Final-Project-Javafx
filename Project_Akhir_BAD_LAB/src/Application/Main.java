@@ -44,6 +44,22 @@ public class Main extends Application {
 		passwordfield.setPrefWidth(250);
 		loginButton.setPrefWidth(100);
 		
+		// Add modules behavior
+        loginButton.setOnAction(e -> {
+            String username = textField.getText();
+            String password = passwordField.getText();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                errorAlert.setContentText("Username or password must be filled");
+                errorAlert.showAndWait();
+            } else if (username.equals("User")) {
+            } else if (username.equals("Admin")) {
+            } else {
+                errorAlert.setContentText("Wrong Username or Password");
+                errorAlert.showAndWait();
+            }
+        });
+		
 		// Create scene
 		Scene scene = new Scene(gridpane, 750, 500);
 		
