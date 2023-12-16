@@ -16,8 +16,8 @@ public class Main extends Application {
 	
 	public Scene initLogInScene() {
 
-		Label labelUsername = new Label("Username:");
-		Label labelPassword = new Label("Password:");
+		Label labelUsername = new Label("Username");
+		Label labelPassword = new Label("Password");
 		TextField textfieldUsername = new TextField();
 		PasswordField passwordfield = new PasswordField();
 		Button loginButton = new Button("Login");
@@ -43,8 +43,9 @@ public class Main extends Application {
 		textfieldUsername.setPrefWidth(250);
 		passwordfield.setPrefWidth(250);
 		loginButton.setPrefWidth(100);
-
-		Scene scene = new Scene(gridpane, 750, 550);
+		
+		// Create scene
+		Scene scene = new Scene(gridpane, 750, 500);
 		
 		return scene;
 	}
