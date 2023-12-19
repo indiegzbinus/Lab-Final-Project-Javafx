@@ -30,20 +30,10 @@ public class Login extends Pages{
     String databaseUsername, databasePassword, databaseAccountType;
 	
 	protected void init() {
-        // Set root size
-        root.setPrefHeight(500);
-        root.setPrefWidth(750);
 	    // Replace username & passwords verification later
 	    databaseUsername = "Admin";
 	    databasePassword = "Admin";
 	    databaseAccountType = "Admin";
-        // Menu Bar
-		menuBar = new MenuBar();
-			loginMenuItem = new MenuItem("Login");
-			registerMenuItem = new MenuItem("Register");
-			menu = new Menu("Menu");
-	        menu.getItems().addAll(loginMenuItem, registerMenuItem);
-	        menuBar.getMenus().add(menu);
 		// Initiate components
 		labelUsername = new Label("Username");
 		labelPassword = new Label("Password");
@@ -63,12 +53,8 @@ public class Login extends Pages{
 			gridpane.add(labelPassword, 0, 2);
 			gridpane.add(passwordField, 0, 3);
 			gridpane.add(loginButton, 0, 4);
-		root = new BorderPane();
-	        root.setTop(menuBar);
-	        root.setCenter(gridpane);
-	    
-	    // Create new scene
-        scene = new Scene(root);
+			
+		newScene(gridpane);
 	}
 	
 	// Add modules behavior
@@ -116,6 +102,7 @@ public class Login extends Pages{
 	}
 	
 	public void show(Stage stage) {
+		initLandingPage();
 		init();
 		eventHandler(stage);
 		stage.setResizable(false);
