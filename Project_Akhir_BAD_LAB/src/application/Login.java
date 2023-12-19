@@ -21,66 +21,54 @@ public class Login extends Pages{
 	// Panes
 	GridPane gridpane;
     // Login Scene
-	Label labelLoginUsername, labelLoginPassword;
-	TextField textfieldLoginUsername;
-	PasswordField passwordFieldLogin;
+	Label labelUsername, labelPassword;
+	TextField usernameField;
+	PasswordField passwordField;
 	Button loginButton;
-    // Replace username & passwords verification later
-    String databaseUsername, databasePassword,databaseAccountType;
+	// Alerts
 	Alert blankAlert, wrongPasswordAlert, invalidAlert;
+    // Replace username & passwords verification later
+    String databaseUsername, databasePassword, databaseAccountType;
 	
 	protected void init() {
-		// Panes
-		root = new BorderPane();
-		gridpane = new GridPane();
-		
+        // Set root size
+        root.setPrefHeight(500);
+        root.setPrefWidth(750);
 	    // Replace username & passwords verification later
 	    databaseUsername = "Admin";
 	    databasePassword = "Admin";
 	    databaseAccountType = "Admin";
-		
-		// Initiate components
-		labelLoginUsername = new Label("Username");
-		labelLoginPassword = new Label("Password");
-		textfieldLoginUsername = new TextField();
-		passwordFieldLogin = new PasswordField();
-		loginButton = new Button("Login");
-		
-		// Login page
-		gridpane = new GridPane();
-		gridpane.setPrefHeight(500);
-		gridpane.setPrefWidth(750);
-		gridpane.setVgap(10);
-		gridpane.setHgap(10);
-		gridpane.setAlignment(Pos.CENTER);
-		gridpane.setPadding(new Insets(20, 20, 20, 20));
-		GridPane.setMargin(gridpane, new Insets(20, 20, 20, 20));
-		gridpane.add(labelLoginUsername, 0, 0);
-		gridpane.add(textfieldLoginUsername, 0, 1);
-		gridpane.add(labelLoginPassword, 0, 2);
-		gridpane.add(passwordFieldLogin, 0, 3);
-		gridpane.add(loginButton, 0, 4);
-		textfieldLoginUsername.setPrefWidth(200);
-		passwordFieldLogin.setPrefWidth(200);
-		loginButton.setPrefWidth(100);
-		
         // Menu Bar
 		menuBar = new MenuBar();
-		loginMenuItem = new MenuItem("Login");
-		registerMenuItem = new MenuItem("Register");
-		menu = new Menu("Menu");
-        menu.getItems().addAll(loginMenuItem, registerMenuItem);
-        menuBar.getMenus().add(menu);
-		
-        // Add panes to root
-        root.setTop(menuBar);
-        root.setCenter(gridpane);
-        
-        // Set root size
-        root.setPrefHeight(500);
-        root.setPrefWidth(750);
-        
-		// Create scene
+			loginMenuItem = new MenuItem("Login");
+			registerMenuItem = new MenuItem("Register");
+			menu = new Menu("Menu");
+	        menu.getItems().addAll(loginMenuItem, registerMenuItem);
+	        menuBar.getMenus().add(menu);
+		// Initiate components
+		labelUsername = new Label("Username");
+		labelPassword = new Label("Password");
+		usernameField = new TextField();
+			usernameField.setPrefWidth(200);
+		passwordField = new PasswordField();
+			passwordField.setPrefWidth(200);
+		loginButton = new Button("Login");
+			loginButton.setPrefWidth(100);
+		gridpane = new GridPane();
+			gridpane.setPrefSize(750, 500);
+			gridpane.setVgap(10);
+			gridpane.setHgap(10);
+			gridpane.setAlignment(Pos.CENTER);
+			gridpane.add(labelUsername, 0, 0);
+			gridpane.add(usernameField, 0, 1);
+			gridpane.add(labelPassword, 0, 2);
+			gridpane.add(passwordField, 0, 3);
+			gridpane.add(loginButton, 0, 4);
+		root = new BorderPane();
+	        root.setTop(menuBar);
+	        root.setCenter(gridpane);
+	    
+	    // Create new scene
         scene = new Scene(root);
 	}
 	
@@ -99,8 +87,8 @@ public class Login extends Pages{
 		// Login Button
         loginButton.setOnAction(e -> {
         	// Obtain textfields data
-            String username = textfieldLoginUsername.getText();
-            String password = passwordFieldLogin.getText();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
             // Alerts
     		blankAlert = new Alert(AlertType.WARNING, "Username and Password must be filled!");
     		wrongPasswordAlert = new Alert(AlertType.WARNING, "Wrong Username or Password!");
