@@ -12,17 +12,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Register extends Pages{
-	// Panes
-	GridPane gridPane;
 	// Register Scene
 	HBox hbox;
 	VBox vbox1, vbox2;
@@ -36,27 +35,10 @@ public class Register extends Pages{
 	ToggleGroup genderToggle;
 	
 	protected void init() {
-		// Panes
-		root = new BorderPane();
-		gridPane = new GridPane();
-        // Set root size
-        root.setPrefHeight(500);
-        root.setPrefWidth(750);
-		// Menu Bars
-	    menuBar = new MenuBar();
-	    menu = new Menu("Page");
-	    loginMenuItem = new MenuItem("Login");
-	    registerMenuItem = new MenuItem("Register");
-        menu.getItems().addAll(loginMenuItem, registerMenuItem);
-        menuBar.getMenus().addAll(menu);
-	    
 		// Register Scene
-		hbox = new HBox();
-			hbox.setPrefSize(300, 100);
-			hbox.setSpacing(20);
-			hbox.setAlignment(Pos.CENTER);
-			hbox.setPadding(new Insets(20, 20, 20, 20));
 		vbox1 = new VBox();
+			vbox1.setSpacing(10);
+			vbox1.setAlignment(Pos.CENTER_LEFT);
 			labelUsername = new Label("Username");
 			labelPassword = new Label("Password");
 			labelConfirmPassword = new Label("Confirm Password"); 
@@ -64,26 +46,37 @@ public class Register extends Pages{
 			textfieldUsername = new TextField();
 			passwordFieldRegister = new PasswordField();
 			confirmPasswordField = new PasswordField();;
-			ageSpinner = new Spinner<Integer>();
+			ageSpinner = new Spinner<Integer>(1,1,100);
+				ageSpinner.setEditable(true);
+			vbox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
+					labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
 		vbox2 = new VBox();
+			vbox2.setSpacing(10);
+			vbox2.setAlignment(Pos.CENTER_LEFT);
 			labelGender = new Label("Gender");
-			maleRadioButton = new RadioButton("Male");
-			femaleRadioButton = new RadioButton("Female");;
+			genderToggle = new ToggleGroup();
+				maleRadioButton = new RadioButton("Male");
+					maleRadioButton.setUserData("Male");
+					maleRadioButton.setToggleGroup(genderToggle);
+				femaleRadioButton = new RadioButton("Female");
+					femaleRadioButton.setUserData("Female");
+					femaleRadioButton.setToggleGroup(genderToggle);
+				genderToggle.selectToggle(maleRadioButton);
 			labelNationality = new Label("Nationality");
 			nationalityComboBox = new ComboBox<String>();
+				nationalityComboBox.setPrefWidth(100);
 			registerButton = new Button("Register");
-		
-		// Put them together like lego idk
-	    root.setTop(menuBar);
-	    root.setCenter(hbox);
-		vbox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
-				labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
-		vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
-		hbox.getChildren().addAll(vbox1, vbox2);
+				registerButton.setPrefWidth(100);
+			vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
+		hbox = new HBox();
+			hbox.setPrefSize(750, 500);
+			hbox.setSpacing(20);
+			hbox.setAlignment(Pos.CENTER);
+			hbox.setPadding(new Insets(20, 20, 20, 20));
+			hbox.getChildren().addAll(vbox1, vbox2);
 
-        
 		// Create scene
-        scene = new Scene(root);
+		newScene(hbox);
 	}
 	
 	protected void eventHandler(Stage stage) {
@@ -100,6 +93,7 @@ public class Register extends Pages{
 	}
 	
 	public void show(Stage stage) {
+		initLandingPage();
 		init();
 		eventHandler(stage);
 		stage.setResizable(false);
