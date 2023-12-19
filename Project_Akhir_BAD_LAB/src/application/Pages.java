@@ -17,7 +17,8 @@ public abstract class Pages {
     Menu menu;
     MenuItem loginMenuItem, registerMenuItem;
     
+	protected abstract void init();
 	protected abstract void eventHandler(Stage stage);
 	protected abstract void show(Stage stage);
-	protected abstract void init();
+
 }

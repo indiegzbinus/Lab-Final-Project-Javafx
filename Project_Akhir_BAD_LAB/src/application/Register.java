@@ -25,7 +25,7 @@ public class Register extends Pages{
 	GridPane gridPane;
 	// Register Scene
 	HBox hbox;
-	VBox registerVBox1, registerVBox2;
+	VBox vbox1, vbox2;
 	Label labelUsername, labelPassword, labelConfirmPassword, labelAge, labelGender, labelNationality;
 	TextField textfieldUsername;
 	PasswordField passwordFieldRegister, confirmPasswordField;
@@ -56,7 +56,7 @@ public class Register extends Pages{
 			hbox.setSpacing(20);
 			hbox.setAlignment(Pos.CENTER);
 			hbox.setPadding(new Insets(20, 20, 20, 20));
-		registerVBox1 = new VBox();
+		vbox1 = new VBox();
 			labelUsername = new Label("Username");
 			labelPassword = new Label("Password");
 			labelConfirmPassword = new Label("Confirm Password"); 
@@ -65,7 +65,7 @@ public class Register extends Pages{
 			passwordFieldRegister = new PasswordField();
 			confirmPasswordField = new PasswordField();;
 			ageSpinner = new Spinner<Integer>();
-		registerVBox2 = new VBox();
+		vbox2 = new VBox();
 			labelGender = new Label("Gender");
 			maleRadioButton = new RadioButton("Male");
 			femaleRadioButton = new RadioButton("Female");;
@@ -76,10 +76,10 @@ public class Register extends Pages{
 		// Put them together like lego idk
 	    root.setTop(menuBar);
 	    root.setCenter(hbox);
-		registerVBox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
+		vbox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
 				labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
-		registerVBox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
-		hbox.getChildren().addAll(registerVBox1, registerVBox2);
+		vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
+		hbox.getChildren().addAll(vbox1, vbox2);
 
         
 		// Create scene
