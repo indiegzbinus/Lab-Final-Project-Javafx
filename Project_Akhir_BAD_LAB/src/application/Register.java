@@ -23,7 +23,7 @@ public class Register extends Pages{
 	VBox vbox1, vbox2;
 	Label labelEmail, labelPassword, labelConfirmPassword, labelAge, labelGender, labelNationality;
 	TextField textfieldEmail;
-	PasswordField passwordFieldRegister, confirmPasswordField;
+	PasswordField passwordField, confirmPasswordField;
 	Spinner<Integer> ageSpinner;
 	RadioButton maleRadioButton, femaleRadioButton;
 	ComboBox<String> nationalityComboBox;
@@ -46,13 +46,13 @@ public class Register extends Pages{
 			labelAge = new Label("Age");
 				labelAge.setFont(font);
 			textfieldEmail = new TextField();
-			passwordFieldRegister = new PasswordField();
+			passwordField = new PasswordField();
 			confirmPasswordField = new PasswordField();;
 			ageSpinner = new Spinner<Integer>(1,1,100);
 				ageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100));
 				ageSpinner.getValueFactory();
 				ageSpinner.setEditable(true);
-			vbox1.getChildren().addAll(labelEmail, textfieldEmail, labelPassword, passwordFieldRegister, 
+			vbox1.getChildren().addAll(labelEmail, textfieldEmail, labelPassword, passwordField, 
 					labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
 		vbox2 = new VBox();
 			vbox2.setSpacing(10);
@@ -105,6 +105,36 @@ public class Register extends Pages{
 		});
 		registerMenuItem.setOnAction(e -> {
 			// Nothing
+		});
+		
+		// Register button verification
+		registerButton.setOnAction(e -> {
+			String email, password, confirmPassword, gender, nationality;
+			Integer age;
+			email = textfieldEmail.getText();
+			password = passwordField.getText();
+			confirmPassword = confirmPasswordField.getText();
+			age = ageSpinner.getValue();
+			gender = genderToggle.getSelectedToggle().getUserData().toString();
+			nationality = nationalityComboBox.getValue();
+			
+			if (!email.endsWith("@gmail.com")) {
+				
+			} 
+//				else if (Email Not Unique) {} 
+			 else if (password.length()<6) {
+				
+			} else if (!password.equals(confirmPassword)) {
+				
+			} else if (age < 1) {
+				
+			} else if (gender == null) {
+				
+			} else if (nationality == null) {
+				
+			} else {
+				System.out.println("Aman");
+			}
 		});
 	}
 	
