@@ -47,7 +47,7 @@ public abstract class Pages {
 		root.setPrefSize(750, 500);
 		
 	    menuBar = new MenuBar();
-		    menu = new Menu("Page");
+		    menu = new Menu("Admin");
 		    	manageProductMenuItem = new MenuItem("Manage Product");
 		    	viewHistoryMenuItem = new MenuItem("View History");
 		    	logoutMenuItem = new MenuItem("Logout");

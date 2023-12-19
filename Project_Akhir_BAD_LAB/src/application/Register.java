@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -40,6 +41,8 @@ public class Register extends Pages{
 			passwordFieldRegister = new PasswordField();
 			confirmPasswordField = new PasswordField();;
 			ageSpinner = new Spinner<Integer>(1,1,100);
+				ageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100));
+				ageSpinner.getValueFactory();
 				ageSpinner.setEditable(true);
 			vbox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
 					labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
