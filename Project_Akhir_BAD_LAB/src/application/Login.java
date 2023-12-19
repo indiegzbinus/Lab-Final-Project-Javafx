@@ -15,22 +15,22 @@ public class Login extends Pages{
 	// Panes
 	GridPane gridpane;
     // Login Scene
-	Label labelUsername, labelPassword;
+	Label labelEmail, labelPassword;
 	TextField usernameField;
 	PasswordField passwordField;
 	Button loginButton;
 	// Alerts
 	Alert blankAlert, wrongPasswordAlert, invalidAlert;
     // Replace username & passwords verification later
-    String databaseUsername, databasePassword, databaseAccountType;
+    String databaseEmail, databasePassword, databaseAccountType;
 	
 	protected void init() {
 	    // Replace username & passwords verification later
-	    databaseUsername = "Admin";
+	    databaseEmail = "Admin";
 	    databasePassword = "Admin";
 	    databaseAccountType = "Admin";
 		// Initiate components
-		labelUsername = new Label("Username");
+		labelEmail = new Label("Email");
 		labelPassword = new Label("Password");
 		usernameField = new TextField();
 			usernameField.setPrefWidth(200);
@@ -43,12 +43,11 @@ public class Login extends Pages{
 			gridpane.setVgap(10);
 			gridpane.setHgap(10);
 			gridpane.setAlignment(Pos.CENTER);
-			gridpane.add(labelUsername, 0, 0);
+			gridpane.add(labelEmail, 0, 0);
 			gridpane.add(usernameField, 0, 1);
 			gridpane.add(labelPassword, 0, 2);
 			gridpane.add(passwordField, 0, 3);
 			gridpane.add(loginButton, 0, 4);
-			
 		newScene(gridpane);
 	}
 	
@@ -59,7 +58,6 @@ public class Login extends Pages{
 			// Nothing
 		});
 		registerMenuItem.setOnAction(e -> {
-			// Fill Action Later
 			Register register = new Register();
 			register.show(stage);
 		});
@@ -70,14 +68,14 @@ public class Login extends Pages{
             String username = usernameField.getText();
             String password = passwordField.getText();
             // Alerts
-    		blankAlert = new Alert(AlertType.WARNING, "Username and Password must be filled!");
-    		wrongPasswordAlert = new Alert(AlertType.WARNING, "Wrong Username or Password!");
+    		blankAlert = new Alert(AlertType.WARNING, "Email and Password must be filled!");
+    		wrongPasswordAlert = new Alert(AlertType.WARNING, "Wrong Email or Password!");
     		invalidAlert = new Alert(AlertType.ERROR, "Something unexpected occured!");
             
             if (username.isBlank() || password.isBlank()) {
 				blankAlert.show();
 			}
-            else if (!username.equals(databaseUsername) || !username.equals(databasePassword)) {
+            else if (!username.equals(databaseEmail) || !username.equals(databasePassword)) {
             	wrongPasswordAlert.show();
 			}
             else {

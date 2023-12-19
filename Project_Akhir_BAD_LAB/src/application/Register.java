@@ -1,5 +1,6 @@
 package application;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,43 +14,50 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Register extends Pages{
 	// Register Scene
 	HBox hbox;
 	VBox vbox1, vbox2;
-	Label labelUsername, labelPassword, labelConfirmPassword, labelAge, labelGender, labelNationality;
-	TextField textfieldUsername;
+	Label labelEmail, labelPassword, labelConfirmPassword, labelAge, labelGender, labelNationality;
+	TextField textfieldEmail;
 	PasswordField passwordFieldRegister, confirmPasswordField;
 	Spinner<Integer> ageSpinner;
 	RadioButton maleRadioButton, femaleRadioButton;
 	ComboBox<String> nationalityComboBox;
+	ObservableList<String> countryList;
 	Button registerButton;
 	ToggleGroup genderToggle;
+	Font font = new Font(15);
 	
 	protected void init() {
+		
 		// Register Scene
 		vbox1 = new VBox();
-			vbox1.setSpacing(10);
-			vbox1.setAlignment(Pos.CENTER_LEFT);
-			labelUsername = new Label("Username");
+			vbox1.setSpacing(8);
+			labelEmail = new Label("Email");
+				labelEmail.setFont(font);
 			labelPassword = new Label("Password");
+				labelPassword.setFont(font);
 			labelConfirmPassword = new Label("Confirm Password"); 
+				labelConfirmPassword.setFont(font);
 			labelAge = new Label("Age");
-			textfieldUsername = new TextField();
+				labelAge.setFont(font);
+			textfieldEmail = new TextField();
 			passwordFieldRegister = new PasswordField();
 			confirmPasswordField = new PasswordField();;
 			ageSpinner = new Spinner<Integer>(1,1,100);
 				ageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100));
 				ageSpinner.getValueFactory();
 				ageSpinner.setEditable(true);
-			vbox1.getChildren().addAll(labelUsername, textfieldUsername, labelPassword, passwordFieldRegister, 
+			vbox1.getChildren().addAll(labelEmail, textfieldEmail, labelPassword, passwordFieldRegister, 
 					labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
 		vbox2 = new VBox();
 			vbox2.setSpacing(10);
-			vbox2.setAlignment(Pos.CENTER_LEFT);
 			labelGender = new Label("Gender");
+				labelGender.setFont(font);
 			genderToggle = new ToggleGroup();
 				maleRadioButton = new RadioButton("Male");
 					maleRadioButton.setUserData("Male");
@@ -59,18 +67,32 @@ public class Register extends Pages{
 					femaleRadioButton.setToggleGroup(genderToggle);
 				genderToggle.selectToggle(maleRadioButton);
 			labelNationality = new Label("Nationality");
+				labelNationality.setFont(font);
 			nationalityComboBox = new ComboBox<String>();
 				nationalityComboBox.setPrefWidth(100);
+		        countryList = nationalityComboBox.getItems();
+		        countryList.add("Indonesia");
+		        countryList.add("Malaysia");
+		        countryList.add("Nigeria");
+		        countryList.add("Papua Nugini");
+		        countryList.add("Inggris");
+		        countryList.add("Amerika");
+		        countryList.add("Jepang");
+		        countryList.add("Korea");
+		        countryList.add("Kamboja");
+		        countryList.add("Chile");
+		        countryList.add("Filipina");
+		        countryList.add("China");
+		        countryList.add("Singapura");
+		        nationalityComboBox.setValue(countryList.get(0));
 			registerButton = new Button("Register");
 				registerButton.setPrefWidth(100);
-			vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
+			vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, labelNationality, nationalityComboBox, registerButton);
 		hbox = new HBox();
-			hbox.setPrefSize(750, 500);
 			hbox.setSpacing(20);
 			hbox.setAlignment(Pos.CENTER);
 			hbox.setPadding(new Insets(20, 20, 20, 20));
 			hbox.getChildren().addAll(vbox1, vbox2);
-
 		// Create scene
 		newScene(hbox);
 	}
@@ -80,11 +102,9 @@ public class Register extends Pages{
 		loginMenuItem.setOnAction(e -> {
 			Login login = new Login();
 			login.show(stage);
-			// Nothing
 		});
 		registerMenuItem.setOnAction(e -> {
-			// Fill Action Later
-			stage.setScene(scene);
+			// Nothing
 		});
 	}
 	
