@@ -3,6 +3,8 @@ package application;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -118,22 +120,32 @@ public class Register extends Pages{
 			gender = genderToggle.getSelectedToggle().getUserData().toString();
 			nationality = nationalityComboBox.getValue();
 			
+			Alert notGmailAlert = new Alert(AlertType.WARNING, "Email must ends with ‘@gmail.com’.");
+			Alert uniqueUsernameAlert = new Alert(AlertType.WARNING, "Username must be unique");
+			Alert passwordLengthAlert = new Alert(AlertType.WARNING, "Password must contain minimum 6 characters");
+			Alert confirmPasswordAlert = new Alert(AlertType.WARNING, "Confirm Password must be the same as Password.");
+			Alert ageAlert = new Alert(AlertType.WARNING, "Age must be greater than 0");
+			Alert genderAlert = new Alert(AlertType.WARNING, "Gender must be selected");
+			Alert nationalityAlert = new Alert(AlertType.WARNING, "Nationality must be selected");
+			
 			if (!email.endsWith("@gmail.com")) {
-				
+				notGmailAlert.show();
 			} 
-//				else if (Email Not Unique) {} 
-			 else if (password.length()<6) {
-				
+//				else if (Email Not Unique) {
+//			uniqueUsernameAlert.show()
+//			} 
+			  else if (password.length()<6) {
+				 passwordLengthAlert.show();
 			} else if (!password.equals(confirmPassword)) {
-				
+				confirmPasswordAlert.show();
 			} else if (age < 1) {
-				
+				ageAlert.show();
 			} else if (gender == null) {
-				
+				genderAlert.show();
 			} else if (nationality == null) {
-				
+				nationalityAlert.show();
 			} else {
-				System.out.println("Aman");
+				System.out.println("Aman, masukkan data user :thumbs_up:");
 			}
 		});
 	}
