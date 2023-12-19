@@ -19,21 +19,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Register {
-	
-	// Stage and Scene
-	Stage window;
-	Scene scene;
-	
+public class Register extends Pages{
 	// Panes
-	BorderPane root;
 	GridPane gridPane;
-	
-	// Menu Bars
-    MenuBar menuBar;
-    Menu menu;
-    MenuItem loginMenuItem, registerMenuItem;
-	
 	// Register Scene
 	HBox registerHBox;
 	VBox registerVBox1, registerVBox2;
@@ -45,7 +33,7 @@ public class Register {
 	ComboBox<String> nationalityComboBox;
 	Button registerButton;
 	
-	private void init() {
+	protected void init() {
 		// Panes
 		root = new BorderPane();
 		gridPane = new GridPane();
@@ -89,9 +77,7 @@ public class Register {
 		registerHBox.setAlignment(Pos.CENTER);
 		registerHBox.setPadding(new Insets(20, 20, 20, 20));
 		HBox.setMargin(registerHBox, new Insets(20, 20, 20, 20));
-	}
-	
-	private void Register() {
+		
 		registerVBox1.getChildren().addAll(labelRegisterUsername, textfieldRegisterUsername, labelRegisterPassword, passwordFieldRegister, 
 				labelRegisterConfirmPassword, passwordFieldConfirmRegister, labelAge, ageSpinner);
 		registerVBox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, nationalityComboBox, registerButton);
@@ -108,8 +94,30 @@ public class Register {
         
         // Create scene
         scene = new Scene(root);
-        window.setTitle("Register");
 	}
-
-
+	
+	protected void eventHandler(Stage stage) {
+		// Menu Items
+		loginMenuItem.setOnAction(e -> {
+			Login login = new Login();
+			login.show(stage);
+			// Nothing
+		});
+		registerMenuItem.setOnAction(e -> {
+			// Fill Action Later
+			stage.setScene(scene);
+		});
+		
+	}
+	
+	public void show(Stage stage) {
+		init();
+		eventHandler(stage);
+		stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setTitle("Login");
+        stage.show();
+        
+        System.out.println("Show Login Page");
+	}
 }
