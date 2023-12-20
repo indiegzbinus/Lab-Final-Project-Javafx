@@ -1,7 +1,6 @@
 package application;
 
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -32,12 +31,14 @@ public class Register extends Pages{
 	ObservableList<String> countryList;
 	Button registerButton;
 	ToggleGroup genderToggle;
-	Font font = new Font(15);
+	Font font;
 	
 	protected void init() {
-		
+		// Font
+		Font font = new Font(15);
 		// Register Scene
 		vbox1 = new VBox();
+			vbox1.setAlignment(Pos.BASELINE_LEFT);
 			vbox1.setSpacing(8);
 			labelEmail = new Label("Email");
 				labelEmail.setFont(font);
@@ -57,6 +58,7 @@ public class Register extends Pages{
 			vbox1.getChildren().addAll(labelEmail, textfieldEmail, labelPassword, passwordField, 
 					labelConfirmPassword, confirmPasswordField, labelAge, ageSpinner);
 		vbox2 = new VBox();
+			vbox2.setAlignment(Pos.BASELINE_LEFT);
 			vbox2.setSpacing(10);
 			labelGender = new Label("Gender");
 				labelGender.setFont(font);
@@ -93,7 +95,6 @@ public class Register extends Pages{
 		hbox = new HBox();
 			hbox.setSpacing(20);
 			hbox.setAlignment(Pos.CENTER);
-			hbox.setPadding(new Insets(20, 20, 20, 20));
 			hbox.getChildren().addAll(vbox1, vbox2);
 		// Create scene
 		newScene(hbox);
