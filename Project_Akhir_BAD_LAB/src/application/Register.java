@@ -1,5 +1,6 @@
 package application;
 
+import data.User;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -13,14 +14,14 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Register extends Pages{
 	// Register Scene
-	HBox hbox;
+	FlowPane flowPane;
 	VBox vbox1, vbox2;
 	Label labelEmail, labelPassword, labelConfirmPassword, labelAge, labelGender, labelNationality;
 	TextField textfieldEmail;
@@ -92,12 +93,12 @@ public class Register extends Pages{
 			registerButton = new Button("Register");
 				registerButton.setPrefWidth(100);
 			vbox2.getChildren().addAll(labelGender, maleRadioButton, femaleRadioButton, labelNationality, nationalityComboBox, registerButton);
-		hbox = new HBox();
-			hbox.setSpacing(20);
-			hbox.setAlignment(Pos.CENTER);
-			hbox.getChildren().addAll(vbox1, vbox2);
+		flowPane = new FlowPane();
+			flowPane.setHgap(20);
+			flowPane.setAlignment(Pos.CENTER);
+			flowPane.getChildren().addAll(vbox1, vbox2);
 		// Create scene
-		newScene(hbox);
+		newScene(flowPane);
 	}
 	
 	protected void eventHandler(Stage stage) {
@@ -121,32 +122,31 @@ public class Register extends Pages{
 			gender = genderToggle.getSelectedToggle().getUserData().toString();
 			nationality = nationalityComboBox.getValue();
 			
-			Alert notGmailAlert = new Alert(AlertType.WARNING, "Email must ends with ‘@gmail.com’.");
-			Alert uniqueUsernameAlert = new Alert(AlertType.WARNING, "Username must be unique");
-			Alert passwordLengthAlert = new Alert(AlertType.WARNING, "Password must contain minimum 6 characters");
-			Alert confirmPasswordAlert = new Alert(AlertType.WARNING, "Confirm Password must be the same as Password.");
-			Alert ageAlert = new Alert(AlertType.WARNING, "Age must be greater than 0");
-			Alert genderAlert = new Alert(AlertType.WARNING, "Gender must be selected");
-			Alert nationalityAlert = new Alert(AlertType.WARNING, "Nationality must be selected");
-			
 			if (!email.endsWith("@gmail.com")) {
+				Alert notGmailAlert = new Alert(AlertType.WARNING, "Email must ends with ‘@gmail.com’.");
 				notGmailAlert.show();
-			} 
-//				else if (Email Not Unique) {
-//			uniqueUsernameAlert.show()
-//			} 
-			  else if (password.length()<6) {
-				 passwordLengthAlert.show();
+			} else if (!isEmailUnique(email)) {
+				Alert uniqueEmailAlert = new Alert(AlertType.WARNING, "Email must be unique");
+				uniqueEmailAlert.show();
+			} else if (password.length()<6) {
+				Alert passwordLengthAlert = new Alert(AlertType.WARNING, "Password must contain minimum 6 characters");
+				passwordLengthAlert.show();
 			} else if (!password.equals(confirmPassword)) {
+				Alert confirmPasswordAlert = new Alert(AlertType.WARNING, "Confirm Password must be the same as Password.");
 				confirmPasswordAlert.show();
 			} else if (age < 1) {
+				Alert ageAlert = new Alert(AlertType.WARNING, "Age must be greater than 0");
 				ageAlert.show();
 			} else if (gender == null) {
+				Alert genderAlert = new Alert(AlertType.WARNING, "Gender must be selected");
 				genderAlert.show();
 			} else if (nationality == null) {
+				Alert nationalityAlert = new Alert(AlertType.WARNING, "Nationality must be selected");
 				nationalityAlert.show();
 			} else {
 				System.out.println("Aman, masukkan data user :thumbs_up:");
+				User newUser = new User(email, password, gender, nationality, age);
+				newUser.registerUserData();
 			}
 		});
 	}
